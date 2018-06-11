@@ -1,0 +1,27 @@
+{
+  "name": "fcoin-api",
+  "version": "1.0.0",
+  "description": "Use the package, you can use official api easily!",
+  "main": "index.js",
+  "dependencies": {
+    "node-fetch": "^2.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/superhuai/fcoin-api.git"
+  },
+  "keywords": [
+    "api",
+    "fcoin"
+  ],
+  "author": "nanluo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/superhuai/fcoin-api/issues"
+  },
+  "homepage": "https://github.com/superhuai/fcoin-api#readme"
+}
