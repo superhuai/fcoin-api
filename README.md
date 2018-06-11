@@ -9,7 +9,7 @@ npm install fcoin-api
 ```
 const fcoin = require('fcoin-api');
 
-//一定要初始化
+//Important
 fcoin.init({
     key: '',
     secret: ''
