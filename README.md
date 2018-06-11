@@ -9,10 +9,13 @@ npm install fcoin-api
 ```
 const fcoin = require('fcoin-api');
 
+//一定要初始化
 fcoin.init({
     key: '',
     secret: ''
 })
+
+
 /**
  * 创建订单（买卖）
  * @param {交易对} symbol 
