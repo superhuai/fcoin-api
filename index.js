@@ -3,7 +3,9 @@ const crypto = require('crypto');
 
 const API = {
   order: "https://api.fcoin.com/v2/orders",
-  market: "wss://api.fcoin.com/v2/ws"
+  market: "wss://api.fcoin.com/v2/ws",
+  market_http: "https://api.fcoin.com/v2/market/",
+  balance: "https://api.fcoin.com/v2/accounts/balance"
 }
 // Util Func
 function tob64(str){
@@ -85,8 +87,8 @@ Fcoin.cancelOrder = (id) => {
 // 查询账户资产
 Fcoin.getBalance = () => {
   let time = Date.now();
-  let signtmp = secret(`GEThttps://api.fcoin.com/v2/accounts/balance${time}`)
-  return fetch('https://api.fcoin.com/v2/accounts/balance', {
+  let signtmp = secret(`GET${API.balance}${time}`)
+  return fetch(API.balance, {
     method: 'GET',
     headers: {
       'FC-ACCESS-KEY': config.key,
@@ -136,5 +138,31 @@ Fcoin.getOrderByid = (id) => {
   }).then(res => res.json())
   
 }
+/**
+ * 行情接口(ticker)
+ * @param {交易对} symbol 
+ */
+Fcoin.getTicker = (symbol) => {
 
+  let url = `${API.market_http}/ticker/${symbol}`;
+
+  return fetch(url, {
+    method: 'GET'
+  }).then(res => res.json())
+  
+}
+/**
+ * 深度查询
+ * @param {L20 default} deep 
+ * @param {交易对} symbol 
+ */
+Fcoin.getDepth = (deep, symbol) => {
+
+  let url = `${API.market_http}/depth/${deep}/${symbol}`;
+
+  return fetch(url, {
+    method: 'GET'
+  }).then(res => res.json())
+  
+}
 module.exports = Fcoin;

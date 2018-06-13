@@ -1,5 +1,12 @@
 # fcoin-api
-for some people，use api easily
+For some people，use api easily！
+
+脱胎于官方文档 https://developer.fcoin.com/zh.html
+
+# Change Log
+```
+加入常用的HTTP行情接口（Ticker、深度明细查询）
+```
 
 # Installation
 ```
@@ -15,6 +22,18 @@ fcoin.init({
     secret: ''
 })
 
+/**
+ * 行情接口(ticker)
+ * @param {交易对} symbol 
+ */
+fcoin.getTicker('ethusdt').then(data => {})
+
+/**
+ * 深度查询
+ * @param {L20 default} deep 
+ * @param {交易对} symbol 
+ */
+fcoin.getDepth('L20','ethusdt').then(data => {})
 
 /**
  * 创建订单（买卖）
@@ -25,13 +44,16 @@ fcoin.init({
  * @param {数量} amount 
  */
 fcoin.createOrder(symbol, side, type, price, amount).then(data => {})
-// 撤销订单（买卖）
+
 /**
- * 
+ * 撤销订单（买卖）
  * @param {订单id} id 
  */
 fcoin.cancelOrder(id).then(data => {})
-// 查询账户资产
+
+/**
+ * 查询账户资产
+ */
 fcoin.getBalance().then(data => {})
 
 /**
