@@ -1,7 +1,7 @@
 # fcoin-api
 For some people，use api easily！
 
-脱胎于[官方文档 ](https://developer.fcoin.com/zh.html)
+脱胎于[官方文档](https://developer.fcoin.com/zh.html)
 
 # Change Log
 ```
@@ -13,7 +13,7 @@ For some people，use api easily！
 npm install fcoin-api
 ```
 # Examples
-```
+```javascript
 const fcoin = require('fcoin-api');
 
 //Important
@@ -40,8 +40,8 @@ fcoin.getDepth('L20','ethusdt').then(data => {})
  * @param {交易对} symbol 
  * @param {买卖方向} side 
  * @param {现价还是市价} type 
- * @param {价格} price 
- * @param {数量} amount 
+ * @param {价格, string} price 
+ * @param {数量, string} amount 
  */
 fcoin.createOrder(symbol, side, type, price, amount).then(data => {})
 
@@ -69,3 +69,12 @@ fcoin.getOrders(symbol, states, limit).then(data => {})
  * @param {订单id} id 
  */
 fcoin.getOrderByid(id).then(data => {})
+```
+# Note
+
+Any question about this project, you can write a issues to me.
+
+**In addition, if you are or will soon become a miner, you can join the [telegram group](https://t.me/joinchat/H7ItjQwd4jdzB62DQTiAgA)**
+
+
+
