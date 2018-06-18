@@ -1,12 +1,12 @@
-# fcoin-api
+# Fcoin-api
 For some people，use api easily！
 
 脱胎于[官方文档](https://developer.fcoin.com/zh.html)
 
 # Change Log
-```
-加入常用的HTTP行情接口（Ticker、深度明细查询）
-```
+
+* 更新接口，从单实例转为多实例（以便结合多 key）
+* 完善 getOrders 接口的 after 和 before 参数，用来完成分页查询
 
 # Installation
 ```
@@ -14,10 +14,10 @@ npm install fcoin-api
 ```
 # Examples
 ```javascript
-const fcoin = require('fcoin-api');
+const Fcoin = require('fcoin-api');
 
 //Important
-fcoin.init({
+let fcoin = new Fcoin({
     key: '',
     secret: ''
 })
@@ -61,8 +61,10 @@ fcoin.getBalance().then(data => {})
  * @param {交易对} symbol  'submitted,filled'
  * @param {订单状态} states 
  * @param {每页限制数量} limit 
+ * @param {在某个时间戳之后, string} after
+ * @param {在某个时间戳之前, string} before
  */
-fcoin.getOrders(symbol, states, limit).then(data => {})
+fcoin.getOrders(symbol, states, limit, after, before).then(data => {})
 
 /**
  * 获取指定 id 的订单 
