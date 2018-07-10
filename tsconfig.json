@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "alwaysStrict": true,
+    "importHelpers": true,
+    "strict": true,
+    "declaration": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "types": [
+      "node"
+    ],
+    "lib": [
+      "es7"
+    ],
+    "outDir": "./",
+    "experimentalDecorators": true
+  },
+  "include": [
+    "./index.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
