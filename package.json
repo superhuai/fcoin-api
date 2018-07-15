@@ -1,34 +1,37 @@
 {
-  "name": "fcoin-api",
-  "version": "1.0.5",
+  "name": "fcoin-nodejs-api",
+  "version": "0.0.1",
   "description": "Use the package, you can use official api easily!",
   "main": "index.js",
   "dependencies": {
-    "node-fetch": "^2.1.2"
+    "node-fetch": "^2.1.2",
+    "ws": "^5.2.2"
   },
   "devDependencies": {
     "@types/node": "^10.5.2",
     "@types/node-fetch": "^2.1.1",
+    "@types/ws": "^5.1.2",
     "ts-node": "^4.1.0",
     "tslint": "^5.6.0",
     "typescript": "^2.9.2"
   },
   "scripts": {
-    "lint": "tslint --project .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "tslint --project ."
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/superhuai/fcoin-api.git"
+    "url": "git+https://github.com/biluochun/fcoin-api.git"
   },
   "keywords": [
     "api",
-    "fcoin"
+    "fcoin",
+    "websocket",
+    "nodejs"
   ],
-  "author": "nanluo",
+  "author": "imconfig",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/superhuai/fcoin-api/issues"
+    "url": "https://github.com/biluochun/fcoin-api/issues"
   },
-  "homepage": "https://github.com/superhuai/fcoin-api#readme"
+  "homepage": "https://github.com/biluochun/fcoin-api#readme"
 }
