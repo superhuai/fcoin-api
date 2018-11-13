@@ -33,10 +33,10 @@ class FcoinApi {
                 body: JSON.stringify({ type, side, amount, price, symbol }),
             }).then(res => res.json()).then(res => {
                 if (res.status)
-                    return new types_1.FcoinApiRes(null, res);
+                    return new types_1.FcoinApiRes(null, res, res.msg);
                 return res;
             }).catch(e => {
-                return new types_1.FcoinApiRes(null, { status: 1, e });
+                return new types_1.FcoinApiRes(null, { status: 1, e }, e + '');
             });
         });
     }
@@ -58,10 +58,10 @@ class FcoinApi {
             },
         }).then(res => res.json()).then(res => {
             if (res.status)
-                return new types_1.FcoinApiRes(null, res);
+                return new types_1.FcoinApiRes(null, res, res.msg);
             return res;
         }).catch(e => {
-            return new types_1.FcoinApiRes(null, { status: 1, e });
+            return new types_1.FcoinApiRes(null, { status: 1, e }, e + '');
         });
     }
     // 查询账户资产
@@ -77,10 +77,10 @@ class FcoinApi {
             },
         }).then(res => res.json()).then((res) => {
             if (res.status)
-                return new types_1.FcoinApiRes(null, res);
+                return new types_1.FcoinApiRes(null, res, res.msg);
             return res;
         }).catch(e => {
-            return new types_1.FcoinApiRes(null, { status: 1, e });
+            return new types_1.FcoinApiRes(null, { status: 1, e }, e + '');
         });
     }
     // 查询所有订单
@@ -106,10 +106,10 @@ class FcoinApi {
             },
         }).then(res => res.json()).then(res => {
             if (res.status)
-                return new types_1.FcoinApiRes(null, res);
+                return new types_1.FcoinApiRes(null, res, res.msg);
             return res;
         }).catch(e => {
-            return new types_1.FcoinApiRes(null, { status: 1, e });
+            return new types_1.FcoinApiRes(null, { status: 1, e }, e + '');
         });
     }
     // 获取指定 id 的订单
@@ -126,10 +126,10 @@ class FcoinApi {
             },
         }).then(res => res.json()).then((res) => {
             if (res.status)
-                return new types_1.FcoinApiRes(null, res);
+                return new types_1.FcoinApiRes(null, res, res.msg);
             return res;
         }).catch(e => {
-            return new types_1.FcoinApiRes(null, { status: 1, e });
+            return new types_1.FcoinApiRes(null, { status: 1, e }, e + '');
         });
     }
     /**
@@ -141,7 +141,7 @@ class FcoinApi {
             method: 'GET',
         }).then(res => res.json()).then((res) => {
             if (res.status)
-                return new types_1.FcoinApiRes(null, res);
+                return new types_1.FcoinApiRes(null, res, res.msg);
             const ticker = res.data.ticker;
             return new types_1.FcoinApiRes({
                 seq: res.data.seq,
@@ -159,7 +159,7 @@ class FcoinApi {
                 OneDayVolume2: ticker[10],
             });
         }).catch(e => {
-            return new types_1.FcoinApiRes(null, { status: 1, e });
+            return new types_1.FcoinApiRes(null, { status: 1, e }, e + '');
         });
     }
     /**
@@ -171,7 +171,7 @@ class FcoinApi {
             method: 'GET',
         }).then(res => res.json()).then((res) => {
             if (res.status)
-                return new types_1.FcoinApiRes(null, res);
+                return new types_1.FcoinApiRes(null, res, res.msg);
             const bids = [];
             const asks = [];
             res.data.bids.forEach((num, index) => {
@@ -201,7 +201,7 @@ class FcoinApi {
                 type: res.data.type,
             });
         }).catch(e => {
-            return new types_1.FcoinApiRes(null, { status: 1, e });
+            return new types_1.FcoinApiRes(null, { status: 1, e }, e + '');
         });
     }
     // 工具类

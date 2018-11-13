@@ -57,10 +57,11 @@ var OrderState;
     OrderState["pending_cancel"] = "pending_cancel";
 })(OrderState = exports.OrderState || (exports.OrderState = {}));
 class FcoinApiRes {
-    constructor(data, full = null) {
+    constructor(data, full = null, msg = '') {
         this.data = data;
         this.status = full ? full.status : 0;
         this.full = full;
+        this.msg = msg;
     }
 }
 exports.FcoinApiRes = FcoinApiRes;

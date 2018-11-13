@@ -127,7 +127,8 @@ export declare class FcoinApiRes<T> {
     data: T;
     status: number;
     full: any;
-    constructor(data: T, full?: any);
+    msg: string;
+    constructor(data: T, full?: any, msg?: string);
 }
 export interface CoinHas {
     currency: string;

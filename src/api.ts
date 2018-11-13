@@ -33,10 +33,10 @@ export class FcoinApi {
       },
       body: JSON.stringify({ type, side, amount, price, symbol }),
     }).then(res => res.json()).then(res => {
-      if (res.status) return new FcoinApiRes(null, res);
+      if (res.status) return new FcoinApiRes(null, res, res.msg);
       return res as FcoinApiRes<string>;
     }).catch(e => {
-      return new FcoinApiRes(null, { status: 1, e });
+      return new FcoinApiRes(null, { status: 1, e }, e + '');
     });
   }
 
@@ -58,10 +58,10 @@ export class FcoinApi {
         'Content-Type': 'application/json;charset=UTF-8',
       },
     }).then(res => res.json()).then(res => {
-      if (res.status) return new FcoinApiRes(null, res);
+      if (res.status) return new FcoinApiRes(null, res, res.msg);
       return res;
     }).catch(e => {
-      return new FcoinApiRes(null, { status: 1, e });
+      return new FcoinApiRes(null, { status: 1, e }, e + '');
     });
   }
 
@@ -77,10 +77,10 @@ export class FcoinApi {
         'FC-ACCESS-TIMESTAMP': time,
       },
     }).then(res => res.json()).then((res: FcoinApiRes<CoinHas[]>) => {
-      if (res.status) return new FcoinApiRes(null, res);
+      if (res.status) return new FcoinApiRes(null, res, res.msg);
       return res;
     }).catch(e => {
-      return new FcoinApiRes(null, { status: 1, e });
+      return new FcoinApiRes(null, { status: 1, e }, e + '');
     });
   }
 
@@ -105,10 +105,10 @@ export class FcoinApi {
         'FC-ACCESS-TIMESTAMP': time,
       },
     }).then(res => res.json()).then(res => {
-      if (res.status) return new FcoinApiRes(null, res);
+      if (res.status) return new FcoinApiRes(null, res, res.msg);
       return res;
     }).catch(e => {
-      return new FcoinApiRes(null, { status: 1, e });
+      return new FcoinApiRes(null, { status: 1, e }, e + '');
     });
   }
 
@@ -125,10 +125,10 @@ export class FcoinApi {
         'FC-ACCESS-TIMESTAMP': time,
       },
     }).then(res => res.json()).then((res: FcoinApiRes<OrderResult>) => {
-      if (res.status) return new FcoinApiRes(null, res);
+      if (res.status) return new FcoinApiRes(null, res, res.msg);
       return res;
     }).catch(e => {
-      return new FcoinApiRes(null, { status: 1, e });
+      return new FcoinApiRes(null, { status: 1, e }, e + '');
     });
   }
 
@@ -144,7 +144,7 @@ export class FcoinApi {
       seq: number;
       type: string;
     }>) => {
-      if (res.status) return new FcoinApiRes(null, res);
+      if (res.status) return new FcoinApiRes(null, res, res.msg);
       const ticker = res.data.ticker;
       return new FcoinApiRes({
         seq: res.data.seq,
@@ -162,7 +162,7 @@ export class FcoinApi {
         OneDayVolume2: ticker[10], // 24小时内基准货币成交量, 如 btcusdt 中 usdt 的量
       });
     }).catch(e => {
-      return new FcoinApiRes(null, { status: 1, e });
+      return new FcoinApiRes(null, { status: 1, e }, e + '');
     });
   }
 
@@ -180,7 +180,7 @@ export class FcoinApi {
       seq: number;
       type: string;
     }>) => {
-      if (res.status) return new FcoinApiRes(null, res);
+      if (res.status) return new FcoinApiRes(null, res, res.msg);
       const bids: DepthUnit[] = [];
       const asks: DepthUnit[] = [];
       res.data.bids.forEach((num, index) => {
@@ -208,7 +208,7 @@ export class FcoinApi {
         type: res.data.type,
       });
     }).catch(e => {
-      return new FcoinApiRes(null, { status: 1, e });
+      return new FcoinApiRes(null, { status: 1, e }, e + '');
     });
   }
 

@@ -144,11 +144,13 @@ export class FcoinApiRes<T> {
   data: T;
   status: number;
   full: any;
+  msg: string;
 
-  constructor (data: T, full: any = null) {
+  constructor (data: T, full: any = null, msg = '') {
     this.data = data;
     this.status = full ? full.status : 0;
     this.full = full;
+    this.msg = msg;
   }
 }
 
