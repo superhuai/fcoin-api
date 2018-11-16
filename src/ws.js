@@ -94,7 +94,7 @@ class FcoinWebSocket {
     /**
      * 交易记录
      */
-    OnTrade(symbol, limit = 20, fun) {
+    OnTrade(symbol, limit = '20', fun) {
         this.On(fun, `trade.${symbol}`, limit);
     }
     /**

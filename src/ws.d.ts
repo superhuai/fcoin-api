@@ -33,7 +33,7 @@ export declare class FcoinWebSocket {
     /**
      * 交易记录
      */
-    OnTrade(symbol: SymbolEnum, limit: number | undefined, fun: (data: WsResponseTrade) => any): void;
+    OnTrade(symbol: SymbolEnum, limit: string | undefined, fun: (data: WsResponseTrade) => any): void;
     /**
      * 历史数据
      */
