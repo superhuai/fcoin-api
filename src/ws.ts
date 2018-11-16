@@ -25,6 +25,7 @@ import { FcoinUrl } from '.';
 export class FcoinWebSocket {
   private ws: WebSocket;
   private typeListen: { [index: string]: WatchTicker<any>[] } = {};
+  private wsOpen!: Promise<any>;
 
   // 最后一次呼吸返回
   public LastHeartbeat = {
@@ -36,14 +37,16 @@ export class FcoinWebSocket {
 
   constructor () {
     this.ws = new WebSocket(FcoinUrl.market);
-    setInterval(() => this.Heartbeat(), 30000);
+    this.wsOpen = new Promise(resolve => {
+      this.ws.on('open', resolve);
+    });
+    setInterval(() => this.Heartbeat(), 3000);
     this.Listen();
   }
 
-  Heartbeat () {
-    this.ws.on('open', () => {
-      this.ws.send(JSON.stringify({ cmd: 'ping', args: [Date.now()], id: `${Date.now()}` }));
-    });
+  async Heartbeat () {
+    await this.wsOpen;
+    this.ws.send(JSON.stringify({ cmd: 'ping', args: [Date.now()], id: `${Date.now()}` }));
   }
 
   /**
@@ -122,17 +125,16 @@ export class FcoinWebSocket {
     this.On(fun, `candle.${resolution}.${symbol}`);
   }
 
-  private On (callback: WatchTicker<any>, ...topics: any[]) {
-    this.ws.on('open', () => {
-      const name = topics[0];
-      if (this.typeListen[name]) {
-        this.typeListen[name].push(callback);
-        return;
-      }
-      this.typeListen[name] = [];
+  private async On (callback: WatchTicker<any>, ...topics: any[]) {
+    await this.wsOpen;
+    const name = topics[0];
+    if (this.typeListen[name]) {
       this.typeListen[name].push(callback);
-      this.ws.send(JSON.stringify({ cmd: 'sub', args: topics }));
-    });
+      return;
+    }
+    this.typeListen[name] = [];
+    this.typeListen[name].push(callback);
+    this.ws.send(JSON.stringify({ cmd: 'sub', args: topics }));
   }
 
   /**

@@ -1,6 +1,6 @@
 {
   "name": "fcoin-nodejs-api",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Use the package, you can use official api easily!",
   "main": "index.js",
   "dependencies": {

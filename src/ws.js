@@ -34,11 +34,15 @@ class FcoinWebSocket {
             gap: 0,
         };
         this.ws = new ws_1.default(_1.FcoinUrl.market);
-        setInterval(() => this.Heartbeat(), 30000);
+        this.wsOpen = new Promise(resolve => {
+            this.ws.on('open', resolve);
+        });
+        setInterval(() => this.Heartbeat(), 3000);
         this.Listen();
     }
     Heartbeat() {
-        this.ws.on('open', () => {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            yield this.wsOpen;
             this.ws.send(JSON.stringify({ cmd: 'ping', args: [Date.now()], id: `${Date.now()}` }));
         });
     }
@@ -117,7 +121,8 @@ class FcoinWebSocket {
         this.On(fun, `candle.${resolution}.${symbol}`);
     }
     On(callback, ...topics) {
-        this.ws.on('open', () => {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            yield this.wsOpen;
             const name = topics[0];
             if (this.typeListen[name]) {
                 this.typeListen[name].push(callback);
