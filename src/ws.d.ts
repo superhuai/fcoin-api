@@ -21,7 +21,14 @@ import { SymbolEnum, WsResponseTicker, DepthLevel, WsResponseDepth, WsResponseTr
 export declare class FcoinWebSocket {
     private ws;
     private typeListen;
+    LastHeartbeat: {
+        id: string;
+        type: string;
+        ts: number;
+        gap: number;
+    };
     constructor();
+    Heartbeat(): void;
     /**
      * 监听交易对的数据
      */

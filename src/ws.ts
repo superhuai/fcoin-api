@@ -26,9 +26,24 @@ export class FcoinWebSocket {
   private ws: WebSocket;
   private typeListen: { [index: string]: WatchTicker<any>[] } = {};
 
+  // 最后一次呼吸返回
+  public LastHeartbeat = {
+    id: '',
+    type: 'ping',
+    ts: Date.now(),
+    gap: 0,
+  };
+
   constructor () {
     this.ws = new WebSocket(FcoinUrl.market);
+    setInterval(() => this.Heartbeat(), 30000);
     this.Listen();
+  }
+
+  Heartbeat () {
+    this.ws.on('open', () => {
+      this.ws.send(JSON.stringify({ cmd: 'ping', args: [Date.now()], id: `${Date.now()}` }));
+    });
   }
 
   /**
@@ -130,7 +145,7 @@ export class FcoinWebSocket {
         // logger.trace(`ws ${data.type}:`, data);
         switch (data.type) {
           case BrocastType.hello: break;
-          case BrocastType.ping: break;
+          case BrocastType.ping: this.LastHeartbeat = data as any; break;
           case BrocastType.topics:
             // logger.info('订阅成功', data);
             break;

@@ -26,8 +26,21 @@ const _1 = require(".");
 class FcoinWebSocket {
     constructor() {
         this.typeListen = {};
+        // 最后一次呼吸返回
+        this.LastHeartbeat = {
+            id: '',
+            type: 'ping',
+            ts: Date.now(),
+            gap: 0,
+        };
         this.ws = new ws_1.default(_1.FcoinUrl.market);
+        setInterval(() => this.Heartbeat(), 30000);
         this.Listen();
+    }
+    Heartbeat() {
+        this.ws.on('open', () => {
+            this.ws.send(JSON.stringify({ cmd: 'ping', args: [Date.now()], id: `${Date.now()}` }));
+        });
     }
     /**
      * 监听交易对的数据
@@ -125,7 +138,9 @@ class FcoinWebSocket {
                 // logger.trace(`ws ${data.type}:`, data);
                 switch (data.type) {
                     case types_1.BrocastType.hello: break;
-                    case types_1.BrocastType.ping: break;
+                    case types_1.BrocastType.ping:
+                        this.LastHeartbeat = data;
+                        break;
                     case types_1.BrocastType.topics:
                         // logger.info('订阅成功', data);
                         break;
