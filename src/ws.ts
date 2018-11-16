@@ -96,7 +96,7 @@ export class FcoinWebSocket {
   /**
    * 交易记录
    */
-  OnTrade (symbol: SymbolEnum, limit = 20, fun: (data: WsResponseTrade) => any) {
+  OnTrade (symbol: SymbolEnum, limit = '20', fun: (data: WsResponseTrade) => any) {
     this.On(fun, `trade.${symbol}`, limit);
   }
 
