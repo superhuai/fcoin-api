@@ -37,7 +37,7 @@ class FcoinWebSocket {
         this.wsOpen = new Promise(resolve => {
             this.ws.on('open', resolve);
         });
-        setInterval(() => this.Heartbeat(), 3000);
+        setInterval(() => this.Heartbeat(), 30000);
         this.Listen();
     }
     Heartbeat() {
