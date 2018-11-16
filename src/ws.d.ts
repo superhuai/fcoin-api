@@ -51,4 +51,5 @@ export declare class FcoinWebSocket {
      */
     private Listen;
     private TopicCallback;
+    Close(): void;
 }

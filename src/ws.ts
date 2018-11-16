@@ -170,4 +170,9 @@ export class FcoinWebSocket {
     }
     listen.forEach(fun => fun(data));
   }
+
+  Close () {
+    this.ws.close();
+    delete this.ws;
+  }
 }
