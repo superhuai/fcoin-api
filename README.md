@@ -3,10 +3,11 @@ For some people，use api easily！
 
 脱胎于[官方文档](https://developer.fcoin.com/zh.html)
 
-# Change Log
+# Features
+* Promise styles (promise 风格的接口)
+* Support Instances (多实例)
+* 支持代理模式
 
-* 更新接口，从单实例转为多实例（以便结合多 key）
-* 完善 getOrders 接口的 after 和 before 参数，用来完成分页查询
 
 # Installation
 ```
@@ -19,7 +20,8 @@ const Fcoin = require('fcoin-api');
 //Important
 let fcoin = new Fcoin({
     key: '',
-    secret: ''
+    secret: '',
+    proxy: '' // 为空则不开启
 })
 
 /**
@@ -72,6 +74,10 @@ fcoin.getOrders(symbol, states, limit, after, before).then(data => {})
  */
 fcoin.getOrderByid(id).then(data => {})
 ```
+
+# Todo
+* Add Unit Test
+
 # Note
 
 Any question about this project, you can write a issues to me.

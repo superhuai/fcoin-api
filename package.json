@@ -4,6 +4,7 @@
   "description": "Use the package, you can use official api easily!",
   "main": "index.js",
   "dependencies": {
+    "https-proxy-agent": "^2.2.1",
     "node-fetch": "^2.1.2"
   },
   "devDependencies": {},
